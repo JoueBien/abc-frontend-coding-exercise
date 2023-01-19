@@ -2,7 +2,7 @@
 
 ## Summary
 
-Implement an auto-complete field that uses suburb information from postcodeapi.com.au to suggest suburb names and allow the user to make a suggestion. This design is similar to the input seen on https://google.com or the [ABC homepage](www.abc.net.au) location selector component.
+Implement an auto-complete field that uses suburb information from postcodeapi.com.au to suggest suburb names and allow the user to make a suggestion. This design is similar to the input seen on https://google.com or the [ABC homepage](https://www.abc.net.au) location selector component.
 
 ## Scope
 
