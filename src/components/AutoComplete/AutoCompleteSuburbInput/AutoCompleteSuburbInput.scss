@@ -1,0 +1,60 @@
+/* --colour-accent #fdc708 */
+/* tint-5 #e6e6e6 */
+/* Will need to loop back to designer/designs/dev-lead on matching fonts & font-weights */
+.AutoCompleteSuburbInput {
+  width: 100%;
+
+  .input-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .input-label {
+      padding: unset;
+      padding-right: 30px;
+      font-weight: bold;
+    }
+
+    .input-results-container {
+      position: relative;
+      display: flex;
+      width: 100%;
+
+      .Input {
+        font-weight: bold;
+      }
+
+      .Input:focus {
+        /* 
+        * Child has a custom focus ring.
+        * Consider moving down into the child.
+        */
+        outline: none;
+      }
+
+      .input-results {
+        position: absolute;
+        /* The text box height + border */
+        top: calc(1rem + 0.75rem + 0.75rem + 5px);
+        left: 0px;
+        right: 0px;
+      }
+
+      .submit-button {
+        position: absolute;
+        display: flex;
+        top: 1px;
+        right: 1px;
+        bottom: 1px;
+        width: calc(1rem + 0.75rem + 0.75rem);
+        /* 
+        * Consider moving into the button so it does 
+        * not rely on svg size for centering.
+        */
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

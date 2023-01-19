@@ -1,0 +1,39 @@
+{
+  "name": "take-home-assignment",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "rsuite": "^5.24.1",
+    "use-async-setstate": "^0.1.1",
+    "use-debounce": "^9.0.3",
+    "uuid": "^9.0.0"
+  },
+  "scripts": {
+    "start": "concurrently --names 'WEB,API' -c 'bgBlue.bold,bgMagenta.bold' 'npm:dev-server' 'npm:api-proxy'",
+    "dev": "concurrently --names 'WEB,API' -c 'bgBlue.bold,bgMagenta.bold' 'npm:dev-server' 'npm:api-proxy'",
+    "dev-server": "react-scripts start",
+    "api-proxy": "lcp --proxyUrl http://v0.postcodeapi.com.au"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/uuid": "^9.0.0",
+    "concurrently": "^6.2.0",
+    "local-cors-proxy": "^1.1.0",
+    "sass": "^1.57.1",
+    "typescript": "^4.9.4"
+  }
+}
