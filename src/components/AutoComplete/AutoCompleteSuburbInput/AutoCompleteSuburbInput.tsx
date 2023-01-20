@@ -14,7 +14,6 @@ import { API } from "../../../utils/api";
 // Styles
 import "./AutoCompleteSuburbInput.scss";
 
-
 // Props
 export type Props = {
   label?: string;
@@ -52,7 +51,6 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
         const params = API.jsonToParams({
           q: value,
         });
-        console.log("params", params);
         // This would be less jank with next.js and an API route.
         const res = await API.get<SuburbEntity[]>(
           `http://localhost:8010/proxy/suburbs.json?${params}`
@@ -64,7 +62,6 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
               .indexOf(cleanValue.toLocaleLowerCase()) === 0
           );
         });
-        console.log("res", res);
         setResults([...(newResults || [])]);
       } catch (e) {
         // Todo: handle on error
@@ -111,10 +108,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
         const childFocusElements = Array.from(
           inputContainerRef.current?.querySelectorAll(":focus, ul:hover") || []
         );
-        setIsOpen(
-          childFocusElements.length > 0 &&
-            getResults().length > 0
-        );
+        setIsOpen(childFocusElements.length > 0 && getResults().length > 0);
       }
     }, 100);
     return () => {
@@ -156,11 +150,11 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
           )}
         </div>
         <Button
-            className="submit-button"
-            type="button"
-            alt="Check Chosen Suburb"
-            onClick={onChosen}
-          />
+          className="submit-button"
+          type="button"
+          altText="Check Chosen Suburb"
+          onClick={onChosen}
+        />
       </div>
     </div>
   );

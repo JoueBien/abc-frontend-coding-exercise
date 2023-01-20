@@ -17,12 +17,17 @@ export function Button(props) {
 
   return (
     <button
-      type="button"
       className={"Button " + (className || "")}
+      type="button"
       onClick={onClick}
       {...otherProps}
     >
-      <svg viewBox="0 0 24 24" width="24" height="16" alt={altText || "Missing accessible alt text."}>
+      <svg
+        viewBox="0 0 24 24"
+        width="24"
+        height="16"
+        alt={altText || "Missing accessible alt text."}
+      >
         <use xlinkHref={iconPath + "#dls-icon-arrow-right"} />
       </svg>
     </button>

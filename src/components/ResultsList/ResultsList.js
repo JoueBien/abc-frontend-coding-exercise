@@ -1,5 +1,5 @@
 // Libs
-import { clsx } from 'clsx';
+import { clsx } from "clsx";
 // Comps
 import { entitiesMatch } from "../../utils/entities";
 // Styles
@@ -32,22 +32,22 @@ export function ResultsList(props) {
       aria-labelledby={id}
     >
       {(items || []).map(function (item, index) {
-        const isSelected = entitiesMatch(item, selected || {})
-        
+        const isSelected = entitiesMatch(item, selected || {});
+
         // ..
         return (
           <li
             key={"item" + index}
             className="ResultsList-item"
             role="menuitem"
-            type="button"
             onClick={() => onSelect && onSelect(item)}
           >
             <button
               className={clsx(
                 "ResultsList-button",
-                isSelected ? "ResultsList-button-selected": ""
+                isSelected ? "ResultsList-button-selected" : ""
               )}
+              type="button"
               data-option={item.name}
               role="option"
               aria-selected={isSelected}
