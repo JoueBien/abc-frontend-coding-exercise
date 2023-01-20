@@ -9,10 +9,11 @@ import { ResultsList } from "../../ResultsList/ResultsList";
 import { SuburbEntity } from "../../../types/postCodeApi";
 import { useDebouncedCallback } from "use-debounce";
 import { API } from "../../../utils/api";
+// import { API_SAMPLE } from "../../../stubs/apiSample";
 
 // Styles
 import "./AutoCompleteSuburbInput.scss";
-import { API_SAMPLE } from "../../../stubs/apiSample";
+
 
 // Props
 export type Props = {
@@ -31,7 +32,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useAsyncSetState<boolean>(false);
   const [results, setResults] = useAsyncSetState<SuburbEntity[]>([
-    ...API_SAMPLE,
+    // ...API_SAMPLE,
   ]);
   const [inputValue, setInputValue] = useAsyncSetState<string>("");
   const [selectedValue, setSelectedValue] = useAsyncSetState<
