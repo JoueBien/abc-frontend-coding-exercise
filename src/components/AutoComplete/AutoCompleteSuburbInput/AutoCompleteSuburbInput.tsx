@@ -12,6 +12,7 @@ import { API } from "../../../utils/api";
 
 // Styles
 import "./AutoCompleteSuburbInput.scss";
+import { API_SAMPLE } from "../../../stubs/apiSample";
 
 // Props
 export type Props = {
@@ -30,7 +31,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useAsyncSetState<boolean>(true);
   const [results, setResults] = useAsyncSetState<SuburbEntity[]>([
-    // ...API_SAMPLE,
+    ...API_SAMPLE,
   ]);
   const [inputValue, setInputValue] = useAsyncSetState<string>("");
   const [selectedValue, setSelectedValue] = useAsyncSetState<
@@ -103,25 +104,25 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
 
   // On Mount
   // Continue searching for focus/hover of children
-  useEffect(() => {
-    const intervalRef = setInterval(() => {
-      if (inputContainerRef) {
-        const childFocusElements = Array.from(
-          inputContainerRef.current?.querySelectorAll(":focus") || []
-        );
-        const childHoverElements = Array.from(
-          inputContainerRef.current?.querySelectorAll(":hover") || []
-        );
-        setIsOpen(
-          (childFocusElements.length > 0 || childHoverElements.length > 0) &&
-            getResults().length > 0
-        );
-      }
-    }, 100);
-    return () => {
-      clearInterval(intervalRef);
-    };
-  });
+  // useEffect(() => {
+  //   const intervalRef = setInterval(() => {
+  //     if (inputContainerRef) {
+  //       const childFocusElements = Array.from(
+  //         inputContainerRef.current?.querySelectorAll(":focus") || []
+  //       );
+  //       const childHoverElements = Array.from(
+  //         inputContainerRef.current?.querySelectorAll(":hover") || []
+  //       );
+  //       setIsOpen(
+  //         (childFocusElements.length > 0 || childHoverElements.length > 0) &&
+  //           getResults().length > 0
+  //       );
+  //     }
+  //   }, 100);
+  //   return () => {
+  //     clearInterval(intervalRef);
+  //   };
+  // });
 
   // ..
   return (
@@ -142,6 +143,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
             value={inputValue}
             placeholder="Find and choose your suburb."
             onInput={onTypeChange}
+            aria-invalid={selectedValue === undefined}
           />
           {isOpen === true && (
             <>
@@ -149,6 +151,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
                 id={idString}
                 className="input-results"
                 items={results}
+                selected={selectedValue}
                 onSelect={setValueOnSelect}
               />
             </>

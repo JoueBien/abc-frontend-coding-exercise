@@ -24,13 +24,21 @@
   line-height: 100%;
   transition: background 0.1s, color 0.1s;
   font-weight: bold;
+  cursor: pointer;
+}
+
+/* Next time consider using [aria-selected="true"] - will need to test old browsers */
+/* .ResultsList .ResultsList-item .ResultsList-button[aria-selected="true"] { */
+.ResultsList .ResultsList-item .ResultsList-button.ResultsList-button-selected,
+.ResultsList .ResultsList-item .ResultsList-button.ResultsList-button-selected:focus {
+  background: #fdc605;
+  color: black;
 }
 
 .ResultsList .ResultsList-item .ResultsList-button:hover,
 .ResultsList .ResultsList-item .ResultsList-button:focus {
   background: #0058cc;
   color: white;
-  cursor: pointer;
 }
 
 /* Clear the outline - we already provide a visible tab cursor */

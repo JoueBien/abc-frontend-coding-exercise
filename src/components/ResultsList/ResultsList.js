@@ -1,5 +1,7 @@
 // Libs
+import { clsx } from 'clsx';
 // Comps
+import { entitiesMatch } from "../../utils/entities";
 // Styles
 import "./ResultsList.css";
 
@@ -12,12 +14,13 @@ import "./ResultsList.css";
  *
  * @prop {String} id the id to reference for accessability
  * @prop {Array} items List of results of form { name: string, state: { abbreviation: string } }
+ * @prop {Object} selected List of results of form { name: string, state: { abbreviation: string } }
  * @prop {Function} onSelect Callback to execute when item is selected, accepts object.
  * @prop {mixed} ... All other props will be forwarded to the container DOM node.
  */
 export function ResultsList(props) {
   // Props
-  const { className, id, onSelect, items, ...otherProps } = props;
+  const { className, id, onSelect, items, selected, ...otherProps } = props;
 
   // ..
   return (
@@ -29,6 +32,9 @@ export function ResultsList(props) {
       aria-labelledby={id}
     >
       {(items || []).map(function (item, index) {
+        const isSelected = entitiesMatch(item, selected || {})
+        
+        // ..
         return (
           <li
             key={"item" + index}
@@ -37,7 +43,15 @@ export function ResultsList(props) {
             type="button"
             onClick={() => onSelect && onSelect(item)}
           >
-            <button className="ResultsList-button" data-option={item.name}>
+            <button
+              className={clsx(
+                "ResultsList-button",
+                isSelected ? "ResultsList-button-selected": ""
+              )}
+              data-option={item.name}
+              role="option"
+              aria-selected={isSelected}
+            >
               {item.name}, {item.state.abbreviation}
             </button>
           </li>

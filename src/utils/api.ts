@@ -1,11 +1,11 @@
+// Libs
+// Comps
+import {Json} from "../types/entities"
+
 // Types
 type FetchMethod = "POST" | "GET";
 
 type CustomResponse<R> = Response & { data?: R };
-
-type Json = {
-  [key: string]: any;
-};
 
 // Custom Error class with data support
 class FetchError<T> extends Error {
