@@ -13,6 +13,9 @@ export default function App() {
       <AutoCompleteSuburbInput
         label="Suburb"
       />
+      {/* <AutoCompleteSuburbInput
+        label="Suburb"
+      /> */}
       {/* TODO: Implement a suburb autocomplete using &lt;Input /&gt;,
       &lt;ResultsList /&gt; and &lt;Button /&gt; and data provided by the{" "}
       <a href="http://localhost:8010/proxy/suburbs.json?q=Syd">API</a>. */}

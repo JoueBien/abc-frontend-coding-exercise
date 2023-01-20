@@ -40,21 +40,22 @@
         left: 0px;
         right: 0px;
       }
-
-      .submit-button {
-        position: absolute;
-        display: flex;
-        top: 1px;
-        right: 1px;
-        bottom: 1px;
-        width: calc(1rem + 0.75rem + 0.75rem);
-        /* 
-        * Consider moving into the button so it does 
-        * not rely on svg size for centering.
-        */
-        justify-content: center;
-        align-items: center;
-      }
     }
+
+    .submit-button {
+      position: absolute;
+      display: flex;
+      top: 1px;
+      right: 1px;
+      bottom: 1px;
+      width: calc(1rem + 0.75rem + 0.75rem);
+      /* 
+      * Consider moving into the button so it does 
+      * not rely on svg size for centering.
+      */
+      justify-content: center;
+      align-items: center;
+    }
+
   }
 }

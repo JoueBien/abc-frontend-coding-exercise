@@ -29,7 +29,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
   // Local State
   const [idString] = useState(uuidv4());
   const inputContainerRef = useRef<HTMLDivElement | null>(null);
-  const [isOpen, setIsOpen] = useAsyncSetState<boolean>(true);
+  const [isOpen, setIsOpen] = useAsyncSetState<boolean>(false);
   const [results, setResults] = useAsyncSetState<SuburbEntity[]>([
     ...API_SAMPLE,
   ]);
@@ -104,30 +104,27 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
 
   // On Mount
   // Continue searching for focus/hover of children
-  // useEffect(() => {
-  //   const intervalRef = setInterval(() => {
-  //     if (inputContainerRef) {
-  //       const childFocusElements = Array.from(
-  //         inputContainerRef.current?.querySelectorAll(":focus") || []
-  //       );
-  //       const childHoverElements = Array.from(
-  //         inputContainerRef.current?.querySelectorAll(":hover") || []
-  //       );
-  //       setIsOpen(
-  //         (childFocusElements.length > 0 || childHoverElements.length > 0) &&
-  //           getResults().length > 0
-  //       );
-  //     }
-  //   }, 100);
-  //   return () => {
-  //     clearInterval(intervalRef);
-  //   };
-  // });
+  useEffect(() => {
+    const intervalRef = setInterval(() => {
+      if (inputContainerRef) {
+        const childFocusElements = Array.from(
+          inputContainerRef.current?.querySelectorAll(":focus, ul:hover") || []
+        );
+        setIsOpen(
+          childFocusElements.length > 0 &&
+            getResults().length > 0
+        );
+      }
+    }, 100);
+    return () => {
+      clearInterval(intervalRef);
+    };
+  });
 
   // ..
   return (
     <div className={`AutoCompleteSuburbInput ${className}`}>
-      <div className="input-container" ref={inputContainerRef}>
+      <div className="input-container">
         {label !== undefined && (
           <>
             <label className="input-label" htmlFor={idString}>
@@ -135,7 +132,7 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
             </label>
           </>
         )}
-        <div className="input-results-container">
+        <div className="input-results-container" ref={inputContainerRef}>
           {/* Order of tab cursor will go Input, ResultsList, Button */}
           <Input
             id={idString}
@@ -156,13 +153,13 @@ export const AutoCompleteSuburbInput: FC<Props> = ({
               />
             </>
           )}
-          <Button
+        </div>
+        <Button
             className="submit-button"
             type="button"
             alt="Check Chosen Suburb"
             onClick={onChosen}
           />
-        </div>
       </div>
     </div>
   );
